@@ -1,0 +1,470 @@
+---
+title: "Final Project Report"
+author: "Palthayvath_Kavitha"
+date: "25/02/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+title: "Final Project Report"
+author: "Palthayvath_Kavitha"
+date: "24/02/2021"
+output: html_document
+---
+<center>
+<B><FONT SIZE=4, COLOR="#891111">ALY 6000 
+<BR>Final Project Report</FONT>
+<BR><font size="4"><I>Kavitha Palthayvath</I>
+<BR>Instructor's name: Dr. Dee Chiluiza, PhD
+<BR>Date: 24/02/2021</font></B></center>
+
+```{r ,include=FALSE}
+library(ggplot2)
+```
+
+
+```{r, include=FALSE}
+library(readr)
+GobalSales <- read_csv("Datasets/GobalSales.csv", 
+    col_types = cols(Sales = col_number(), 
+        Profit = col_number(), ShippingCost = col_number()))
+View(GobalSales)
+```
+<br>
+<br>
+<center>
+<font size=5, color="black"><b>PART 1. Title and Introduction</b></font></center>
+<P>
+<FONT SIZE=4, COLOR="#891111"><B>INTRODUCTION</B></FONT>
+<P>
+<p style="text-align:justify">Businesses are built in a way to cater to user needs, to have a competitive edge as compared to other businesses, companies have to go out of their way and think out of the box. Companies are finding and creating user personas by tracking user behaviour when they are buying goods online. Observing these patterns is nearly impossible for humans and hence we rely on intelligent systems to do this by performing data analysis. By measuring and comparing each one of those patterns, new-gen examination devices can incorporate thorough client personas – information rich profiles of various crowd fragments. The profundity of such profiles goes past the overall socio economics information. They catch all the communications a client recently had with a brand – items saw, clicks, past buys and so on – and convey customized item proposals dependent on everything the framework thinks about a specific client. Predictive analysis helps businesses grow their cumulative company revenue by a substantial amount. More importantly, the results of this analysis come out faster : corporates have reported a 40% increase in revenue in just 3 years of adoption of the model. </p>
+<P>
+<b>1. General topic:</b> 
+<BR>
+<p style="text-align:justify">I would like to keep my focus on Data-Driven Product Research for Enhanced Pricing Strategy.  Settling on new items to sell or create is never a simple undertaking for internet business brands. The thought may look great on "paper", however at last failure because of helpless statistical surveying and item situating. As indicated by Hubspot, 66% of items fizzle inside the initial two years and 80% of new items stay on the racks for under two years. Everyone believes that you need to pay at any rate five figures to some counseling organization for data analytics of your product. Yet, that is not true anymore. Data analysis processes can supply you with every one of those bits of knowledge for a negligible part of the expense. You simply need to figure out how to decipher that information".  Information examination stages can supply you with each one of those bits of knowledge for a small amount of the expense. You simply need to figure out how to decipher that information. "Shoppers are as a rule noticeably vocal online with their requests and inclinations," said Vlad Dobrynin, CEO of Humans.net, a third era social local area applying man-made brainpower (AI) to change how laborers and organizations interface. "Brands that figure out how to catch that information and apply it to item advancement and how they employ their staff succeed better over the long haul." Hence we need a newer and mature method of dealing with this problem, this is where data-backed pricing management methodologies come in picture. It can bring about a 2%-7% increase in business margins and a 200-350% average growth in ROI over a 12-month period according to Deloitte data. 
+It also aids in on-spot decision making, for example showing your outreach groups how limiting a specific product offering will affect your productivity or how likely client portion A will react to a 15% markdown. Enormous information examination permits your business to turn out to be more coordinated and in a flash react to showcase changes – surge the price for shovels during heavy snowfall.</p>
+
+<P>
+<b>2.  Data set description:</b> 
+<BR>
+<p style="text-align:justify">The data provided is a typical book keeping data set held by a vendor who sells products online(as it has orders from all over the world['Europe', 'Asia Pacific', 'LATAM', 'Africa', 'USCA']) and provides shipping too. The vendor not only provides shipping but also provides discounts on certain products. The inventory of products available with the vendor is divided into a plethora of categories and sub categories, which includes but not limited to ['Corporate', 'Home Office', 'Consumer'] segment. And extends into ['Office Supplies', 'Technology', 'Furniture'] categories, these categories are further segregated into ['Storage', 'Copiers', 'Machines', 'Chairs', 'Appliances', 'Accessories', 'Tables', 'Paper', 'Art', 'Envelopes', 'Bookcases', 'Furnishings', 'Phones', 'Supplies', 'Fasteners', 'Binders', 'Labels']
+subcategories. As mentioned before, the vendor allows shipping all over the world and in order to maintain the order and priority of product delivery they maintain 2 variables in order to map this requirement; 1. ShipMode : ['Standard Class', 'Second Class', 'First Class', 'Same Day'] 2. orderPriority : ['Medium', 'Low', 'High', 'Critical']. So depending on the Order priority, the vendor decides to choose relevant ShipMode for timely product delivery to customers.  Now as far as business is concerned, the vendor maintains a record of what is the shipping cost of the product  for delivery and how he can leverage the number of sales, quantity, to give a fair discount and yet make a profit.</p>
+
+<br>
+<b>3.  Problem identification:</b> 
+<BR>
+<p style="text-align:justify">My focus is on addressing the problem of sales of Office Supplies. Currently after analysing the data, I realised that the sales of Office Supplies is $92,000 whereas sales of Technology and Furniture products is $162,000 and $144,000 which clearly indicates that the sales are not so good for Office Supplies. It is important to address this problem because on comparing the sales performance of other Categories, Office supplies will grow lesser over time. As Technology and Furniture have been doing good, they will keep doing good in future too. But in order to match the competing businesses we need to address where we are lacking and fix it in a way that normalises deficiencies in sales. This way the business will not only rely on a specific category of products to earn all the money. By distributing and normalising sales across all product categories we create a loose coupling with the assets that make money for the business.</p>
+
+<b>4.  Plan: </b> 
+<BR>
+<p style="text-align:justify">
+For solving the problems I will study the dataset and understand what is the difference in discounts, shipping costs, regions, segments we are using as a company and compare how using the same business model Technological assets are earning us more money than office supplies. A graph showing direct relation between the above fields with Technology and another graph to compare the relations with Office Supplies would stand out and show us the problem how we can use predictive analysis to increase or lower discounts, shipping costs, depending on product type and quantity and geographical location.</p>
+
+<u><b>Reference</b></u> : 
+<br>1. Andrew A,(2019). Here's How Data And Analytics Can Benefit E-Commerce Business Owners. Retrieved Jan 4, 2019, from https://www.forbes.com/sites/andrewarnold/2019/01/04/heres-how-data-and-analytics-can-benefit-e-commerce-business-owners/?sh=2d58dc911460/
+<br>2. Jerry U, (2015). The Atlantic. Retrieved Mar 29,2015, from https://www.theatlantic.com/magazine/archive/2017/05/how-online-shopping-makes-suckers-of-us-all/521448/
+<br>3. Joel M, (2017). ONLINE REVIEWS AND SEO, from  Jan 26, 2017 From https://www.konstructdigital.com/seo/online-reviews-seo/
+<br>4. Allan B(2015)- Elementary statistics,edition 7). Retrieved January 19th 2018, from https://bmalone.weebly.com/uploads/2/2/3/9/22391186/bluman_statistics_book.pdf/.
+<br>
+
+
+<br>
+<br>
+<center>
+<font size=5, color="black"><b>PART 2. Analysis Section</b></font></center>
+
+<html>
+<body>
+
+<h1><font size=3><b>Task 1</b></font></h1>
+
+</body>
+</html>
+<br> In Task 1, Imported the dataset inside R Markdown file and changed the name of the dataset name as "GobalSales"
+
+<html>
+<body>
+
+<h1><font size=3><b>Task 2</b></font></h1>
+
+
+</body>
+</html>
+```{r, echo=FALSE}
+analytics_sales         <- vector()
+analytics_quantity      <- vector()
+analytics_discount      <- vector()
+analytics_profit        <- vector()
+analytics_shippingcost  <- vector()
+
+ 
+
+sales        <- GobalSales$Sales
+quantity     <- GobalSales$Quantity
+discount     <- GobalSales$Discount
+profit       <- GobalSales$Profit
+shippingcost <- GobalSales$ShippingCost
+
+ 
+
+# "standard_deviation", "mean", "median", "range"
+# Sales Analytics
+analytics_sales        <- c(analytics_sales, sd(sales))
+analytics_sales        <- c(analytics_sales, mean(sales))
+analytics_sales        <- c(analytics_sales, median(sales))
+analytics_sales        <- c(analytics_sales, max(sales) - min(sales))
+
+ 
+
+# Quantity Analytics 
+analytics_quantity        <- c(analytics_quantity, sd(quantity))
+analytics_quantity        <- c(analytics_quantity, mean(quantity))
+analytics_quantity        <- c(analytics_quantity, median(quantity))
+analytics_quantity        <- c(analytics_quantity, max(quantity) - min(quantity))
+
+ 
+
+# Discount Analytics 
+analytics_discount        <- c(analytics_discount, sd(discount))
+analytics_discount        <- c(analytics_discount, mean(discount))
+analytics_discount        <- c(analytics_discount, median(discount))
+analytics_discount        <- c(analytics_discount, max(discount) - min(discount))
+
+ 
+
+# Profit Analytics 
+analytics_profit        <- c(analytics_profit, sd(profit))
+analytics_profit        <- c(analytics_profit, mean(profit))
+analytics_profit        <- c(analytics_profit, median(profit))
+analytics_profit        <- c(analytics_profit, max(profit) - min(profit))
+
+ 
+
+# shippingcost Analytics 
+analytics_shippingcost        <- c(analytics_shippingcost, sd(shippingcost))
+analytics_shippingcost        <- c(analytics_shippingcost, mean(shippingcost))
+analytics_shippingcost        <- c(analytics_shippingcost, median(shippingcost))
+analytics_shippingcost        <- c(analytics_shippingcost, max(shippingcost) - min(shippingcost))
+
+ 
+
+# Draw Table 
+frame <- matrix(c(analytics_sales, analytics_quantity, analytics_discount, analytics_profit, analytics_shippingcost),ncol=4,byrow=TRUE)
+colnames(frame) <- c("Standard_deviation", "Mean", "Median", "Range")
+rownames(frame) <- c("Sales","Quantity","Discount", "Profit", "ShippingCost")
+frame <- as.table(frame)
+frame
+```
+
+
+<html>
+<body>
+
+<h1><font size=3><b>Task 3</b></font></h1>
+
+
+</body>
+</html>
+ 
+```{r}
+boxplot(GobalSales$Sales,main = "Boxplot for Total Sales",
+        xlab= "Total Sales",
+        col="ORANGE",
+        border = "brown",
+        breaks=10,
+        ylim = c(0,1500),
+        horizontal = TRUE,ylab=NA)
+```
+ 
+```{r}
+hist(GobalSales$Sales,main = "Histrogram for Total Sales",
+        xlab= "Total Sales",
+        col=cm.colors(4),
+        border = "brown",
+        breaks=10,
+        ylim = c(0,800),
+        ylab=NA)
+```
+<br><b>Total Sales - Observation:</b>.
+<p>The above graphs suggest that most(700) Aggregated Sales lie under the range of 1-500 followed by 300 aggregated sales in the range 500-1000. Moreover the range of Total Sales is 0-1000.
+
+```{r}
+boxplot(GobalSales$Quantity,main = "Boxplot for Total Quantity",
+        xlab= "Total Quantity",
+        col="beige",
+        border = "brown",
+        breaks=10,
+        ylim = c(0,10),
+        horizontal = TRUE,ylab=NA)
+```
+<br> 
+```{r}
+hist(GobalSales$Quantity,main = "Histrogram for Total Quantity",
+        xlab= "Total Quantity",
+        col=cm.colors(4),
+        border = "brown",
+        breaks=20,
+        ylim = c(0,350),
+     xlim = c(0,15),
+        ylab=NA)
+```
+<br> <b>Total Quantity - Observation:</b>
+The observation is that the Total Quantity ranges from 2-5 with a median ~ 3.
+The aggregated total quantity high(200) lies within 0-5
+```{r}
+boxplot(GobalSales$Discount,main = "Boxplot for Total Discount",
+        xlab= "Total Discount",
+        col="brown",
+        border = "black",
+        ylim = c(0,0.4),
+        ylab=NA)
+```
+
+
+```{r}
+hist(GobalSales$Discount,main = "Histrogram for Total Discount",
+        xlab= "Total Discount",
+        col=cm.colors(4),
+        border = "brown",
+        breaks= c(10),
+        xlim = c(0,0.8),
+        ylim = c(0,800),
+        ylab=NA)
+```
+<br> <b>Total Discount - Observation:</b>
+The observation shows that most(700) aggregated values are within the range 0.0 to 0.1, followed by 100 aggregated values within the range 0.1 ro 0.2.
+```{r}
+hist(GobalSales$Quantity,main = "Histrogram for Total Profit",
+        xlab= "Total Profit",
+        col=rainbow(8),
+        border = "brown",
+     breaks=10, 
+        ylim = c(0,400),
+        ylab=NA)
+```
+```{r}
+boxplot(GobalSales$Profit,main = "Boxplot for Total Profit",
+        xlab= "Total Profit",
+        col="yellow",
+        border = "brown",
+     breaks=10,
+     Ylim = c(0, 1300))
+```
+<br> <b>Total Profit - Observation:</b>
+The Observation is that for most records the profit averages around $50. 
+```{r}
+boxplot(GobalSales$ShippingCost,main = "Boxplot for Total ShippingCost",
+        xlab= "Total ShippingCost",
+        col=cm.colors(8),
+     breaks=5, 
+     horizontal = TRUE,
+     ylim = c(0,50))
+```
+```{r}
+hist(GobalSales$ShippingCost,main = "Histrogram for Total ShippingCost",
+        xlab= "Total ShippingCost",
+        col=rainbow(8),
+        border = "brown",
+     breaks= c(20),
+     xlim = c(0,400),
+        ylim = c(0,800))
+```
+<br> <b>Total ShippingCost - Observation:</b>
+The observation for the ShippingCost field is that the Shipping cost is lesser than $50 with minimum values at 0. Additionally most values are at the higher end of the range. 
+
+<h1><font size=3><b>Task 4. Counting of categorical variables groups</b></font></h1>
+
+
+```{r}
+test = table(GobalSales$Market)
+print(test)
+      
+```
+```{r}
+barplot(test, main="Global Sales - Market",width= 1,
+        space=0.15,
+        border= NA,
+        axes=F,
+        las=2,
+        cex.names=0.7,
+        ylim = c(0,600),
+        col=cm.colors(8))
+        
+
+```
+<br> <b>Global Sales- Market Result:</b>
+The observation here is that Most number of sales are in the Asia Pacific Market. Followed by Europe, LATAM and USCA which are almost the same, and finally Africa. 
+```{r}
+test = table(GobalSales$Category)
+print(test)
+      
+```
+```{r}
+barplot(test, main=" Global Sales - Category",width= 1,
+        space=0.15,
+        border= NA,
+        axes=F,
+        las=2,
+        cex.names=0.7,
+        ylim = c(0,600),
+        col=rainbow(4))
+        
+
+```
+<br> <b>Global Sales- Category Result:</b>
+The category wise sales suggest that Technology has the maximum sales followed by Office Supplies, Furniture.
+```{r}
+test = table(GobalSales$OrderPriority)
+print(test)
+      
+```
+```{r}
+barplot(test, main="Global Sales - OrderPriority", 
+        width= 1,
+        space=0.15,
+        border= NA,
+        axes=F,
+        las=2,
+        cex.names=0.7,
+        col=cm.colors(4))
+        
+
+```
+<br> <b>Global Sales- OrderPriority Result:</b>
+The global sales as per Order Priority suggests that there are least number of Low priority products to be delivered followed by Critical, High, and Medium priority.
+<html>
+<body>
+
+
+
+
+</body>
+</html>
+<h1><font size=3><b>Task 5</b></font></h1>
+<br>
+<br><b> 1. What is the median sales for the category market?</b>
+```{r}
+
+Market <- tapply(GobalSales$Sales,GobalSales$Market, median) 
+print(Market)
+
+```
+
+```{r}
+Market1 <- table(GobalSales$Market)
+Marketdf <- data.frame(Market1,Market)
+colnames(Marketdf) <- c("Market", "Sales")
+Marketdf
+```
+
+
+```{r}
+ggplot(Marketdf, aes(x=Sales, y=Market)) + 
+  geom_bar(stat="identity", fill="#b9e68a") +
+  coord_flip() 
+
+```
+<br> <b>Observation:</b> The Median sales for category market suggests that Africa has the least sales.
+<br>
+
+<br><b> 2. What is the mean Profit for the categorical variables ShipMode?</b>
+<br>
+
+```{r}
+
+ShipMode <- tapply(GobalSales$Profit,GobalSales$ShipMode, mean) 
+print(ShipMode)
+
+```
+```{r}
+ShipMode1 <- table(GobalSales$ShipMode)
+ShipModedf <- data.frame(ShipMode1,ShipMode)
+colnames(ShipModedf) <- c("ShipMode", "Profit")
+
+ShipModedf
+```
+```{r}
+ggplot(ShipModedf, aes(x=ShipMode, y=Profit)) + 
+  geom_bar(stat="identity", fill="brown") +
+  coord_flip()
+```
+<br> <b>Observation:</b> The mean profit for category shipping mode suggests that most products are ordered with Standard Class delivery, and products with same day delivery are the least.
+<br>
+
+<br><b> 3. What is the mean Quantity for the categorical variables Category?</b>
+<br>
+```{r}
+Category <- tapply(GobalSales$Quantity, GobalSales$Category, mean) 
+print(Category)
+
+```
+```{r}
+Category1 <- table(GobalSales$Category)
+Categorydf <- data.frame(Category1,Category)
+colnames(Categorydf) <- c("Category", "Quantity")
+
+Categorydf
+```
+```{r}
+ggplot(Categorydf, aes(x=Category, y=Quantity)) + 
+  geom_bar(stat="identity", fill="#d4a9ce") +
+  coord_flip() 
+
+```
+<br> <b>Observation:</b> The above graph shows that technology category is the most ordered product category.
+ <html>
+<body>
+
+<h1><font size=3><b>Task 6</b></font></h1>
+
+
+</body>
+</html>
+
+<br>In this task I have combined three categorical fields (Category, ShipMode, Market) with a numeric field (Profit), in order to answer the question, “What is the median profit in various markets for same day delivery products in the Technology Category? ”
+ 
+
+```{r}
+Profit_Category <- GobalSales[GobalSales$Category %in% c("Technology"), ]
+Same_Day_Profit <- Profit_Category[Profit_Category$ShipMode %in% c("Same Day"), ]
+Same_Day_profit_Technology <- tapply(Same_Day_Profit$Profit, Same_Day_Profit$ShipMode, median)
+Market2 <- GobalSales$Market
+Category1 <- table(Same_Day_Profit$ShipMode)
+Categorydf <- data.frame(Category1,Market2)
+colnames(Categorydf) <- c("Market", "Profit")
+ggplot(Categorydf, aes(x=Market2, y=Profit)) +
+  geom_bar(stat="identity", fill = "BROWN") +
+  coord_flip()
+
+
+
+```
+<br>The result above shows that the vendor earns maximum profit from delivery to Asia Pacific followed by Europe, LATAM, USCA, and Africa earns the least profit from same day delivery products.
+ 
+<html>
+<body>
+<br>
+<br>
+<br>
+<center>
+<font size=5, color="black"><b>PART 3. Conclusion, References, and Appendix Sections</b></font></center>
+
+<P><FONT SIZE=4, COLOR="#8272E9"><B>CONCLUSIONS</B></FONT>
+
+After going over the analysis I have done for the dataset, I found some facts and figures that may help the company to earn more profit and sustain their business better. The business is losing a lot of money in performing their operations in smaller countries like, Brazil, Morocco, Nigeria, Iraq, and Afghanistan, which can be summarised as Western Asia, and Western Africa region. So the first order of business should be understanding why there are losses in these regions. This finding is synonymous with the sales issue I talked about in the beginning that the Office Supplies have least sales and it is consistent with the finding that the same regions have least discounts available. So, the second recommendation would be to introduce more discounts in these regions to get their sales up which will ultimately get them more profit. Hence these observations will help the business grow and maintain their profit in existing locations and also increase the profit in the locations where there are more losses. Thereby, growing the business profit overall.
+
+<br>
+<FONT SIZE=4, COLOR="#8272E9"><B>BIBLIOGRAPHY</B></FONT>
+<br><b>References:</b>
+<br>1) Allan B(2015)- Elementary statistics,edition 7). Retrieved January 19th 2018, from https://bmalone.weebly.com/uploads/2/2/3/9/22391186/bluman_statistics_book.pdf/
+<br>2)Andrew A,(2019). Here's How Data And Analytics Can Benefit E-Commerce Business Owners. Retrieved Jan 4, 2019, from https://www.forbes.com/sites/andrewarnold/2019/01/04/heres-how-data-and-analytics-can-benefit-e-commerce-business-owners/?sh=2d58dc911460/
+<br>3) Jerry U, (2015). The Atlantic. Retrieved Mar 29,2015, from https://www.theatlantic.com/magazine/archive/2017/05/how-online-shopping-makes-suckers-of-us-all/521448/
+<br>4) Joel M, (2017). ONLINE REVIEWS AND SEO, from  Jan 26, 2017 From https://www.konstructdigital.com/seo/online-reviews-seo/
+
+<FONT SIZE=4, COLOR="#8272E9"><B>APPENDIX</B></FONT>
+<P>
+Rmd file is included in this report.
